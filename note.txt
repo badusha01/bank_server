@@ -1,0 +1,41 @@
+Server Creation
+---------------
+
+1-  npm init
+2-  install express       npm i express
+
+steps
+-----
+
+1- import express
+2- create app using express
+3- setting port to run the app (port:3000 series)
+
+
+JWT(JSON Web Token)
+-------------------
+
+installation - npm i jsonwebtoken
+
+
+- user authentication
+- jsonwebtoken - library used to generate tokens
+- sign() - method to generate tokens
+-
+
+Token Verification
+------------------
+
+MiddleWares
+-----------
+
+- its a function with 3 argmnts(req,res,next)
+- have the capacity to control http requests in node
+- two types of MiddleWares
+
+ -1. Application Specific MiddleWares - it happens before all the http methods
+ -2. Router Specific MiddleWares      - can apply only to the specific requests 
+
+-next() - method used inside middleware to continue its node execution
+
+
