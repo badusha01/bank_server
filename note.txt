@@ -21,7 +21,8 @@ installation - npm i jsonwebtoken
 - user authentication
 - jsonwebtoken - library used to generate tokens
 - sign() - method to generate tokens
--
+- verify() - method used to token verification
+
 
 Token Verification
 ------------------
@@ -39,3 +40,63 @@ MiddleWares
 -next() - method used inside middleware to continue its node execution
 
 
+
+MongoDB
+-------
+
+
+1- to see databases
+        - show dbs 
+
+2- to open a db
+        - use (databaseName)
+
+3- to list connections
+        - show collections 
+
+4- to show the data inside the collection
+        - db.(collectionName).find()  
+
+5- to show single data inside a collection
+        - db.(collectionName).findOne({key:value})
+        
+
+     eg:   -db.users.findOne({acno:1000})    - present       - full data of that object
+                                             - not present   - null
+
+6- insert new data 
+           -db.(collectionName).insetOne({keys:values})
+
+7- to find data using a particular condition 
+       -db.(collectionName).find({condition})       
+              condition create using query selection operators
+       
+       - to access data which have 40000 greater balance
+         db.users.find({balance:{gt:4000}})
+
+
+8- delete a data from collection
+        -db.(collectionName).deleteOne({key:value})  - delete count=0
+
+9- update 
+        -db.(collectionName).updateOne({oldkey:oldvalue},{$set:{newkey:newvalue}})
+        -db.users.updateOne({username:anu},{$set:{username:anu v}})
+
+
+Database - Server Integration(MongoDB Node Connection)
+------------------------------27017   3000
+
+mongoose - library used to integrate mongodb and server 
+         - npm i mongoose 
+
+
+connect() - method used to create connection string 
+
+model()   - method used to create model 
+
+steps
+-----
+
+1-import mongoose 
+2-connection string creation 
+3-model creation for collection inside database (model name is singular form of collection name)

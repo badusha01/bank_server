@@ -42,7 +42,7 @@ login = (acno, psw) => {
 
       // token create
 
-      jwt.sign({acno},"superkey123")
+    const token=  jwt.sign({acno},"superkey123")
 
 
       return {
