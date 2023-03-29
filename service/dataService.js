@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+const db = require("./db")
 
 userDetails = {
   1000: { username: "anu", acno: 1000, password: "abc123", balance: 0, transaction: [] },
@@ -10,24 +11,35 @@ userDetails = {
 
 
 register = (acno, uname, psw) => {
-  if (acno in userDetails) {
-    return {
-      status: false,
-      message: "user already present",
-      statusCode: 404
+                         
+  return db.User.findOne({ acno }).then(user=>{
+    // if acno present in db then get the object of that user else null response
+    if(user){
+      return {
+        status: false,
+        message: "user already present",
+        statusCode: 404
+      }
+      
     }
-  }
-  else {
-    userDetails[acno] = { username: uname, acno, password: psw, balance: 0, transaction: [] }
-    return {
-      status: true,
-      message: "registered",
-      statusCode: 200
+    else{
+        
+      newUser=new db.User({
+        username:uname,
+        acno,
+        password:psw,
+        balance:0,
+        transactions:[]
+      })
+      newUser.save()
+      return{
+        status:true,
+        message:"registered",
+        statusCode:200
+      }
     }
-  }
+  })
 }
-
-
 
 
 
@@ -42,7 +54,7 @@ login = (acno, psw) => {
 
       // token create
 
-    const token=  jwt.sign({acno},"superkey123")
+      const token = jwt.sign({ acno }, "superkey123")
 
 
       return {
